@@ -1,0 +1,5 @@
+name = linnotest
+description = A linnotest module.
+package = Drupal 7 Development
+core = 7.x
+

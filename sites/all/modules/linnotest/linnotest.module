@@ -1,0 +1,27 @@
+<?php
+
+//hook menu
+function linnotest_menu() {
+   $items = array();
+    $items['json-products'] = array(
+        'page callback' => 'products_func',
+        'access callback' => TRUE,
+    );
+    return $items;
+}
+
+
+// מחזיר את כל המוצרים כאוביקט json
+
+ function products_func(){
+    $products = db_query("SELECT nid,title,filename
+    FROM node AS n
+    LEFT JOIN field_data_field_imageproduct p ON n.nid = p.entity_id
+    LEFT JOIN file_managed f ON f.fid = p.field_imageproduct_fid
+    WHERE type = 'sizeproduct'
+    ")->fetchAll();
+    drupal_json_output($products);
+ }
+
+
+ 
